@@ -24,4 +24,3 @@ def dirIndex(dir):
             output += dirIndex(dir + '\\' + x)
     return output
 
-print(dirIndex('C:\\Users\\HunekerStefan(27005)\\Desktop\\testdir'))
