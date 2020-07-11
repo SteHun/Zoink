@@ -10,8 +10,8 @@ def compare(path1, path2):
 def index(dir):
     output = []
     for x in os.listdir(dir):
-        if os.path.isdir(dir):
-            index(dir + '\\' + x)
+        if os.path.isdir(dir + '\\' + x):
+            output += index(dir + '\\' + x)
         else:
             output.append(dir + '\\' + x)
     return output
@@ -19,7 +19,9 @@ def index(dir):
 def dirIndex(dir):
     output = []
     for x in os.listdir(dir):
-        if os.path.isdir(dir):
+        if os.path.isdir(dir + '\\' + x):
             output.append(dir + '\\' + x)
-            index(dir + '\\' + x)
+            output += dirIndex(dir + '\\' + x)
     return output
+
+print(dirIndex('C:\\Users\\HunekerStefan(27005)\\Desktop\\testdir'))
