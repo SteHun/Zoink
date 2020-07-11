@@ -24,3 +24,9 @@ def dirIndex(dir):
             output += dirIndex(dir + '\\' + x)
     return output
 
+def convertToRelative(basePath, fullPath):
+    if fullPath.startswith(basePath):
+        output = fullPath[len(basePath):len(fullPath)]
+        return output
+    else:
+        raise RuntimeError('fullPath does not start with basePath')
