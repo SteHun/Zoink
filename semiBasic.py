@@ -42,3 +42,10 @@ def convertToFull(basePath, relativePath):
         raise RuntimeError('One of the inputs is not a string')
 
 def decideAction(originalFullPath, targetFullPath):#returns string 'overwrite', 'remove' or 'keep'
+    try:
+        if basic.read(originalFullPath) == basic.read(targetFullPath):
+            return 'keep'
+        else:
+            return 'overwrite'
+    except:
+        return 'remove'
