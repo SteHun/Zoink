@@ -14,18 +14,18 @@ def compare(path1, path2):#requires full paths
 def index(dir):#requires base path, returns full paths
     output = []
     for x in os.listdir(dir):
-        if os.path.isdir(dir + '\\' + x):
-            output += index(dir + '\\' + x)
+        if os.path.isdir(dir + x):
+            output += index(dir + x)
         else:
-            output.append(dir + '\\' + x)
+            output.append(dir + x)
     return output
 
 def dirIndex(dir):#requires base path, returns full paths
     output = []
     for x in os.listdir(dir):
-        if os.path.isdir(dir + '\\' + x):
-            output.append(dir + '\\' + x)
-            output += dirIndex(dir + '\\' + x)
+        if os.path.isdir(dir + x):
+            output.append(dir + x)
+            output += dirIndex(dir + x)
     return output
 
 def convertToRelative(basePath, fullPath):
@@ -35,5 +35,10 @@ def convertToRelative(basePath, fullPath):
     else:
         raise RuntimeError('fullPath does not start with basePath')
 
-def decideAction(originalRelativePath, originalBasePath, targetRelativePath, targetBasePath):#returns string 'overwrite', 'remove' or 'keep'
-    
+def convertToFull(basePath, relativePath):
+    try:
+        return basePath + relativePath
+    except:
+        raise RuntimeError('One of the inputs is not a string')
+
+def decideAction(originalFullPath, targetFullPath):#returns string 'overwrite', 'remove' or 'keep'
